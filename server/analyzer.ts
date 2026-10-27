@@ -184,7 +184,7 @@ function detectCycles(
   files: Record<string, IndexedFile>,
   edges: GraphEdge[]
 ): DependencyCycle[] {
-  const adj = new Map<string, string[]>();
+  const adj = new Map<string, string[]>();                    
   for (const edge of edges) {
     if (!adj.has(edge.source)) adj.set(edge.source, []);
     adj.get(edge.source)!.push(edge.target);
@@ -204,7 +204,7 @@ function detectCycles(
     const neighbors = adj.get(node) || [];
     for (const neighbor of neighbors) {
       if (!visited.has(neighbor)) {
-        dfs(neighbor);
+        dfs(neighbor);                                         //DFS 
       } else if (recursionStack.has(neighbor)) {
         // Cycle detected from neighbor to current
         const cycleStartIndex = currentPath.indexOf(neighbor);
